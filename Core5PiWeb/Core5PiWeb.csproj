@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web" DefaultTargets="my-debug">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -7,6 +7,18 @@
     <Copyright>Leander Nedergaard Jensen</Copyright>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <SshDeployHost>192.168.10.03</SshDeployHost>
+    <SshDeployTargetPath>/home/pi/Core5PiWeb/publish</SshDeployTargetPath>
+    <!-- user name and password retrieved from environment variables -->
+    <!--<SshDeployUsername>$(RPI_TEST_USERNAME)</SshDeployUsername>
+    <SshDeployPassword>$(RPI_TEST_PASSWORD)</SshDeployPassword>-->
+  </PropertyGroup>
+
+  <Target Name="my-debug">
+    <Message Importance="high" Text="DEBUG DEBUG DEBUG DEBUG $(SshDeployUsername) $(SshDeployPassword)"/>
+  </Target>
+  
   <ItemGroup>
     <Content Remove="appsettings.json" />
   </ItemGroup>
@@ -22,5 +34,4 @@
       <CopyToPublishDirectory>Always</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
-
 </Project>
